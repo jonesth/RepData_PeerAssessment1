@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Question 1</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Question 1</h1>
+
+<h2>Code for reading in the dataset and/or processing the data</h2>
+
+<p>if(!file.exists(&#39;activity.csv&#39;)){
+  unzip(&#39;activity.zip&#39;)
+}
+Activity &lt;- read.csv(&#39;activity.csv&#39;)</p>
+
+<h1>Question 2</h1>
+
+<h2>Histogram of the total number of steps taken each day</h2>
+
+<h3>Data frame summing steps per date</h3>
+
+<p>ActivitySteps &lt;- tapply(Activity$steps, Activity$date, FUN=sum, na.rm=TRUE)</p>
+
+<h4>Create histogram of steps per day</h4>
+
+<p>library(ggplot2)
+qplot(ActivitySteps, binwidth = 1000, xlab = &ldquo;Total Steps Per Day&rdquo;)</p>
+
+<h1>Question 3</h1>
+
+<h2>Mean and median number of steps taken each day</h2>
+
+<h3>Create mean and median of steps per day</h3>
+
+<p>MeanSteps &lt;- mean(ActivitySteps, na.rm=TRUE)
+MedianSteps &lt;- median(ActivitySteps, na.rm=TRUE)</p>
+
+<h3>Mean steps per day</h3>
+
+<p>MeanSteps</p>
+
+<h3>Median steps per day</h3>
+
+<p>MedianSteps</p>
+
+<h1>Question 4</h1>
+
+<h2>Time series plot of the average number of steps taken</h2>
+
+<h3>Create the interval means</h3>
+
+<p>MeanByInt &lt;- aggregate(x=list(steps=Activity$steps), 
+by=list(interval=Activity$interval), FUN=mean, na.rm=TRUE)</p>
+
+<h3>Create plot</h3>
+
+<p>library(ggplot2)</p>
+
+<p>ggplot(data=MeanByInt, aes(x=interval, y=steps)) + geom_line() +
+  ggtitle(&ldquo;Average Number of Steps&rdquo;) + xlab(&ldquo;5-minute Interval&rdquo;) +
+  ylab(&ldquo;Average Steps&rdquo;)</p>
+
+<h1>Question 5</h1>
+
+<h2>The 5-minute interval that, on average, contains the maximum number of steps</h2>
+
+<h3>Max</h3>
+
+<p>MeanByInt[which.max(MeanByInt$steps),]</p>
+
+<h1>Question 6</h1>
+
+<h2>Code to describe and show a strategy for imputing missing data Theory here is to replace the NA&#39;s by the mean of the corresponding interval.</h2>
+
+<h3>Copy the data frame</h3>
+
+<p>Activity2 &lt;- Activity</p>
+
+<h3>Add a column to the clone for the new index</h3>
+
+<p>Activity2$Orig &lt;- &ldquo;original&rdquo;</p>
+
+<h3>number of rows to check</h3>
+
+<p>l &lt;- nrow(Activity2)</p>
+
+<h3>numbers of NAs</h3>
+
+<p>length(which(is.na(Activity2$steps)))</p>
+
+<h3>replace NAs with the mean of the same interval</h3>
+
+<p>for (i in 1:l) {
+  if (is.na(Activity2[i,1])) {
+    Activity2[i,1] &lt;- MeanByInt[MeanByInt$interval == Activity2[i,3],2]
+    Activity2[i,4] &lt;- &ldquo;completed&rdquo;
+  }
+}</p>
+
+<h3>Recreate the data frame summing steps per date</h3>
+
+<p>ActivitySteps2 &lt;- tapply(Activity2$steps, Activity2$date, FUN=sum, na.rm=TRUE )</p>
+
+<h3>Recreate the mean and median of steps per day</h3>
+
+<p>MeanSteps2 &lt;- mean(ActivitySteps2)
+MedianSteps2 &lt;- median(ActivitySteps2)</p>
+
+<h3>Compare new mean steps with original mean steps</h3>
+
+<p>c(MeanSteps2, MeanSteps)</p>
+
+<h3>Compare new median steps with original median steps</h3>
+
+<p>c(MedianSteps2, MedianSteps)</p>
+
+<h1>Question 7</h1>
+
+<h2>Histogram of the total number of steps taken each day after missing values are imputed</h2>
+
+<h3>Setup data for histogram</h3>
+
+<p>OriginalPlot &lt;- qplot(ActivitySteps, binwidth=1000, ylim=c(0,15),
+               main=&ldquo;Original&rdquo;, xlab=&ldquo;Total steps per day&rdquo;)</p>
+
+<p>AmendedPlot &lt;- qplot(ActivitySteps2, binwidth=1000, ylim=c(0,15),
+               main=&ldquo;Amended&rdquo;, xlab=&ldquo;Total steps per day&rdquo;)</p>
+
+<h3>Create histogram of steps per day</h3>
+
+<p>library(ggplot2)
+install.packages(&ldquo;gridExtra&rdquo;)
+library(gridExtra)
+require(gridExtra)</p>
+
+<p>grid.arrange(OriginalPlot, AmendedPlot, ncol=2)</p>
+
+<h1>Question 8</h1>
+
+<h2>Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends</h2>
+
+<h3>Reformat and expand our amended data frame to identify a weekday (WDay) and weekend (WEnd)</h3>
+
+<p>Activity2[,2] &lt;- as.Date(Activity2[,2])
+Activity2$WDay &lt;- weekdays(Activity2[,2])
+Activity2$WeekGroup &lt;- &ldquo;week&rdquo;</p>
+
+<h3>Fill WeekGroup with weekend identifier</h3>
+
+<p>for (i in 1:l) {
+  if (Activity2[i,5] == &ldquo;Saturday&rdquo; | Activity2[i,5] == &ldquo;Sunday&rdquo;) {
+    Activity2[i,6] &lt;- &ldquo;weekend&rdquo;
+  }
+}</p>
+
+<p>Activity2[,6] &lt;- as.factor(Activity2[,6])</p>
+
+<p>Activity2WDay &lt;- subset(Activity2,Activity2[,6] == &ldquo;week&rdquo;)
+Activity2WEnd &lt;- subset(Activity2,Activity2[,6] == &ldquo;weekend&rdquo;)</p>
+
+<h3>Recreate the mean by weekday and weekend</h3>
+
+<p>MeanWDay &lt;- aggregate(steps ~ interval, Activity2WDay, FUN=mean)
+MeanWEnd &lt;- aggregate(steps ~ interval, Activity2WEnd, FUN=mean)</p>
+
+<h3>Prepare the plots</h3>
+
+<p>PlotWDay &lt;- ggplot(data = MeanWDay, aes(x=interval, y=steps)) +
+         geom_line() + ylim(0, 250) + ggtitle(&ldquo;Weekday&rdquo;) +
+         xlab(&ldquo;5-minute Interval&rdquo;) + ylab(&ldquo;Average Steps&rdquo;)</p>
+
+<p>PlotWEnd &lt;- ggplot(data = MeanWEnd, aes(x=interval, y=steps)) +
+         geom_line() + ylim(0, 250) + ggtitle(&ldquo;Weekend&rdquo;) +
+         xlab(&ldquo;5-minute Interval&rdquo;) + ylab(&ldquo;Average Steps&rdquo;)</p>
+
+<h3>Load and plot charts</h3>
+
+<p>library(ggplot2)
+library(gridExtra)
+require(gridExtra)</p>
+
+<h3>plot</h3>
+
+<p>grid.arrange(PlotWDay, PlotWEnd, ncol=2)</p>
+
+<h1>Question 9</h1>
+
+<h2>All of the R code needed to reproduce the results (numbers, plots, etc.) in the report</h2>
+
+<h3>The underlying R Markdown document contains all of the R code needed to reproduce the report.</h3>
+
+</body>
+
+</html>
