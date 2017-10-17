@@ -28,7 +28,7 @@ library(ggplot2)
 qplot(ActivitySteps, binwidth = 1000, xlab = "Total Steps Per Day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
+![](PA1_template_files/figure-html/steps_per_day_histogram1-1.png)<!-- -->
 
 ## Question 3
 Mean and median number of steps taken each day
@@ -77,7 +77,7 @@ ggplot(data=MeanByInt, aes(x=interval, y=steps)) + geom_line() +
   ylab("Average Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
+![](PA1_template_files/figure-html/average_steps_series1-1.png)<!-- -->
 
 ## Question 5
 The 5-minute interval that, on average, contains the maximum number of steps
@@ -183,7 +183,7 @@ require(gridExtra)
 grid.arrange(OriginalPlot, AmendedPlot, ncol=2)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
+![](PA1_template_files/figure-html/steps_per_day_histogram2-1.png)<!-- -->
 
 ## Question 8
 Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
@@ -239,9 +239,294 @@ Plot
 grid.arrange(PlotWDay, PlotWEnd, ncol=2)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-51-1.png)<!-- -->
+![](PA1_template_files/figure-html/average_steps_series2-1.png)<!-- -->
 
 ## Question 9
 All of the R code needed to reproduce the results (numbers, plots, etc.) in the report
 
 The underlying R Markdown document contains all of the R code needed to reproduce the report.
+
+# Produce html and md files
+
+```r
+setwd("~/")
+library("knitr")
+knit2html("PA1_template.Rmd")
+```
+
+```
+## 
+## 
+## processing file: PA1_template.Rmd
+```
+
+```
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |.                                                                |   2%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |..                                                               |   4%
+## label: unnamed-chunk-25 (with options) 
+## List of 1
+##  $ echo: logi FALSE
+## 
+## 
+  |                                                                       
+  |....                                                             |   5%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.....                                                            |   7%
+## label: unnamed-chunk-26
+## 
+  |                                                                       
+  |......                                                           |   9%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.......                                                          |  11%
+## label: unnamed-chunk-27
+## 
+  |                                                                       
+  |........                                                         |  13%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.........                                                        |  15%
+## label: unnamed-chunk-28
+```
+
+```
+## 
+  |                                                                       
+  |...........                                                      |  16%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |............                                                     |  18%
+## label: unnamed-chunk-29
+## 
+  |                                                                       
+  |.............                                                    |  20%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |..............                                                   |  22%
+## label: unnamed-chunk-30
+## 
+  |                                                                       
+  |...............                                                  |  24%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.................                                                |  25%
+## label: unnamed-chunk-31
+## 
+  |                                                                       
+  |..................                                               |  27%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...................                                              |  29%
+## label: unnamed-chunk-32
+## 
+  |                                                                       
+  |....................                                             |  31%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.....................                                            |  33%
+## label: unnamed-chunk-33
+```
+
+```
+## 
+  |                                                                       
+  |......................                                           |  35%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |........................                                         |  36%
+## label: unnamed-chunk-34
+## 
+  |                                                                       
+  |.........................                                        |  38%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |..........................                                       |  40%
+## label: unnamed-chunk-35
+## 
+  |                                                                       
+  |...........................                                      |  42%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |............................                                     |  44%
+## label: unnamed-chunk-36
+## 
+  |                                                                       
+  |..............................                                   |  45%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...............................                                  |  47%
+## label: unnamed-chunk-37
+## 
+  |                                                                       
+  |................................                                 |  49%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.................................                                |  51%
+## label: unnamed-chunk-38
+## 
+  |                                                                       
+  |..................................                               |  53%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...................................                              |  55%
+## label: unnamed-chunk-39
+## 
+  |                                                                       
+  |.....................................                            |  56%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |......................................                           |  58%
+## label: unnamed-chunk-40
+## 
+  |                                                                       
+  |.......................................                          |  60%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |........................................                         |  62%
+## label: unnamed-chunk-41
+## 
+  |                                                                       
+  |.........................................                        |  64%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...........................................                      |  65%
+## label: unnamed-chunk-42
+## 
+  |                                                                       
+  |............................................                     |  67%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.............................................                    |  69%
+## label: unnamed-chunk-43
+## 
+  |                                                                       
+  |..............................................                   |  71%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...............................................                  |  73%
+## label: unnamed-chunk-44
+## 
+  |                                                                       
+  |................................................                 |  75%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |..................................................               |  76%
+## label: unnamed-chunk-45
+```
+
+```
+## 
+  |                                                                       
+  |...................................................              |  78%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |....................................................             |  80%
+## label: unnamed-chunk-46
+## 
+  |                                                                       
+  |.....................................................            |  82%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |......................................................           |  84%
+## label: unnamed-chunk-47
+## 
+  |                                                                       
+  |........................................................         |  85%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.........................................................        |  87%
+## label: unnamed-chunk-48
+## 
+  |                                                                       
+  |..........................................................       |  89%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |...........................................................      |  91%
+## label: unnamed-chunk-49
+## 
+  |                                                                       
+  |............................................................     |  93%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |.............................................................    |  95%
+## label: unnamed-chunk-50
+## 
+  |                                                                       
+  |...............................................................  |  96%
+##   ordinary text without R code
+## 
+## 
+  |                                                                       
+  |................................................................ |  98%
+## label: unnamed-chunk-51
+```
+
+```
+## 
+  |                                                                       
+  |.................................................................| 100%
+##   ordinary text without R code
+```
+
+```
+## output file: PA1_template.md
+```
