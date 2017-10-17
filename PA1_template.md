@@ -28,7 +28,7 @@ library(ggplot2)
 qplot(ActivitySteps, binwidth = 1000, xlab = "Total Steps Per Day")
 ```
 
-<img src="PA1_template_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](PA1_template_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
 
 ## Question 3
 Mean and median number of steps taken each day
@@ -77,7 +77,7 @@ ggplot(data=MeanByInt, aes(x=interval, y=steps)) + geom_line() +
   ylab("Average Steps")
 ```
 
-<img src="PA1_template_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+![](PA1_template_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
 
 ## Question 5
 The 5-minute interval that, on average, contains the maximum number of steps
@@ -183,7 +183,7 @@ require(gridExtra)
 grid.arrange(OriginalPlot, AmendedPlot, ncol=2)
 ```
 
-<img src="PA1_template_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+![](PA1_template_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
 
 ## Question 8
 Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
@@ -239,12 +239,9 @@ Plot
 grid.arrange(PlotWDay, PlotWEnd, ncol=2)
 ```
 
-<img src="PA1_template_files/figure-html/unnamed-chunk-55-1.png" width="672" />
+![](PA1_template_files/figure-html/unnamed-chunk-51-1.png)<!-- -->
 
 ## Question 9
 All of the R code needed to reproduce the results (numbers, plots, etc.) in the report
 
 The underlying R Markdown document contains all of the R code needed to reproduce the report.
-
-# Produce html and md files
-
