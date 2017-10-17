@@ -245,6 +245,3 @@ grid.arrange(PlotWDay, PlotWEnd, ncol=2)
 All of the R code needed to reproduce the results (numbers, plots, etc.) in the report
 
 The underlying R Markdown document contains all of the R code needed to reproduce the report.
-
-# Produce html and md files
-
